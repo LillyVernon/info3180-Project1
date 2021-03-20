@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% block main %}
+<h2 class="page-header">Add New Property</h2>
+
+{% include 'flash_messages.html' %} {# Add the appropriate method and enctype attributes to the form tag to allow for file uploads #}
+<div class="propertyform">
+    <form action="{{ url_for('property') }}" method="post" enctype="multipart/form-data">
+        {{ form.csrf_token }} {# Add the file upload field as you learnt for Flask-WTF #}
+        <div style=" margin-bottom: 15px; ">
+            <h6 style=" margin-bottom: -7px; "> {{ form.title.label }}</h6> {{ form.title(size=55) }}
+        </div>
+
+
+        <div style=" margin-bottom: 10px; ">
+            <h6 style=" margin-bottom: -3px; "> {{ form.description.label }}</h6> {{ form.description() }}
+        </div>
+
+        <div style=" margin-bottom: 10px; ">
+            <span style="display: inline-block;  margin-right: 440px; margin-bottom: -35px; "> <h6 style=" margin-bottom: -13px; "> {{ form.rooms.label }}
+            </h6></span >
+             <span style="display: inline-block; margin-bottom: -35px;  "><h6>{{ form.bathroom.label }} </h6> </span>
+            <br>
+            <span style=" margin-right: 40px;">{{ form.rooms(class="formdouble") }} </span> <span> {{ form.bathroom(class="formdouble") }}</span> </div>
+
+
+
+        <div style=" margin-bottom: 10px; ">
+            <span style="display: inline-block;  margin-right: 505px;  margin-bottom: -7px; "> <h6 style=" margin-bottom: -3px; "> {{ form.price.label }}</h6> </span>
+            <span style="display: inline-block; margin-bottom: -7px; "> <h6>{{ form.propertyType.label }} </h6></span>
+            <br>
+            <span style=" margin-right: 40px;">{{ form.price() }} </span>
+            <span>{{ form.propertyType() }} </span>
+        </div>
+
+        <div style=" margin-bottom: 10px; ">
+            <h6 style=" margin-bottom: -3px; "> {{ form.location.label }}</h6> {{ form.location() }}
+        </div>
+
+        <div style=" margin-bottom: 10px; ">
+            <h6 style=" margin-bottom: -20px; "> {{ form.photo.label }} </h6><br> {{ form.photo(class="form-control ") }}
+        </div>
+
+        <button type="submit " name="submit " class="btn btn-primary ">Add Property</button>
+    </form>
+    <br>
+</div>
+{% endblock %}
