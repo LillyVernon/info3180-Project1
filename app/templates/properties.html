@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block main %}
+<h1 class="page-header">Properties</h1>
+
+{% include 'flash_messages.html' %} {# Add the appropriate method and enctype attributes to the form tag to allow for file uploads #}
+<div class="grid-container">
+    <!-- <ul class="images"> -->
+    {% for item in items%}
+    <div class="property">
+        <!-- <li class="grid-item"></li> -->
+        <img class="img" src=" {{url_for( 'get_image', filename=item.photo_name)}} " />
+
+        <div class="propertyinfo">
+            <h6>{{item.property_title}} </h6>
+            <span class="location"><img class="flaticon1" src="{{url_for('static', filename='location.png')}}" />{{item.location}} </span> <br><br>
+            <span class="price">${{item.price}} </span>
+        </div>
+        <form action="{{ url_for('individualproperty', propertyid=item.id) }}" method="get" enctype="multipart/form-data">
+            <input type="hidden" id="custId" name="propertyid" value="{{item.id}}">
+            <button type="button" class="propertybutton" value="{{item.id}}"><a href="{{ url_for('individualproperty', propertyid=item.id) }}"> View Property</a> </button>
+        </form>
+
+    </div>
+    {% endfor%}
+    <!-- </ul> -->
+</div>
+{% endblock %}
