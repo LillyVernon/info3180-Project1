@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block main %} {% for item in query%}
+<div class="row">
+    <div class="column">
+        <li class="grid-item"> <img class="propertiesimg" src=" {{url_for( 'get_image', filename=item.photo_name)}} " /> </li>
+    </div>
+
+    <div class="column column2">
+        <h6 class="title">{{item.property_title}} </h6>
+
+        <div class="first">
+            <span class="individualprice">${{item.price}} </span>
+            <span class="individualtype">{{item.propery_type}} </span>
+        </div>
+
+
+        <p> {{item.description}}</p>
+        <div class="second">
+            <span class="Bedrooms"><img class="flaticon1" src="{{url_for('static', filename='bed.png')}}" />{{item.rooms}} Bedrooms</span>
+            <span class="bathrooms"><img class="flaticon1" src="{{url_for('static', filename='bathtub.png')}}" />{{item.bathrooms}} Bathrooms </span>
+
+        </div>
+        <h6> <img class="flaticon1" src="{{url_for('static', filename='location.png')}}" />{{item.location}} </h6>
+        <button type="button" class="realtorbutton"> Email Realtor</button>
+    </div>
+
+</div>
+{% endfor%} {% endblock %}
